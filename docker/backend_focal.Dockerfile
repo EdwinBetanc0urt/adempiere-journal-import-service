@@ -1,11 +1,11 @@
 FROM eclipse-temurin:11-jdk-focal
 
 LABEL maintainer="ySenih@erpya.com; EdwinBetanc0urt@outlook.com" \
-	description="Backend gRPC"
+	description="ADempiere Journal Import Service gRPC"
 
 # Init ENV with default values
 ENV \
-	SERVER_PORT="50059" \
+	SERVER_PORT="50062" \
 	SERVER_LOG_LEVEL="WARNING" \
 	DB_HOST="localhost" \
 	DB_PORT="5432" \
@@ -35,7 +35,7 @@ RUN	apt-get update && \
 WORKDIR /opt/apps/server
 
 # Copy src files
-COPY docker/adempiere-grpc-template-service /opt/apps/server
+COPY docker/adempiere-journal-import-service /opt/apps/server
 COPY docker/env.yaml /opt/apps/server/env.yaml
 COPY docker/start.sh /opt/apps/server/start.sh
 

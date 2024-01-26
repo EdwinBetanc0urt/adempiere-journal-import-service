@@ -9,7 +9,7 @@ cp -rf /etc/envoy/envoy_template.yaml $PROD_FILE
 
 
 # Set server values
-sed -i "s|5555|$SERVER_PORT|g" $PROD_FILE
+sed -i "s|5562|$SERVER_PORT|g" $PROD_FILE
 
 
 # Backend gRPC

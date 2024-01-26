@@ -6,9 +6,9 @@ LABEL maintainer="ySenih@erpya.com; EdwinBetanc0urt@outlook.com" \
 
 # Init ENV with default values
 ENV \
-	SERVER_PORT="5555" \
+	SERVER_PORT="5562" \
 	BACKEND_HOST="localhost" \
-	BACKEND_PORT="50059" \
+	BACKEND_PORT="50062" \
 	SERVICES_ENABLED="template_service.TemplateService;"
 
 #Expose Ports
@@ -23,7 +23,7 @@ WORKDIR /etc/envoy/
 COPY docker/envoy_template.yaml /etc/envoy/envoy_template.yaml
 
 # Proto gRPC descriptor
-COPY docker/adempiere-grpc-template-service-service.pb /data/descriptor.pb
+COPY docker/adempiere-journal-import-service.pb /data/descriptor.pb
 COPY docker/start_grpc_proxy.sh /etc/envoy/start.sh
 
 

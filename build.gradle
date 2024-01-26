@@ -16,7 +16,7 @@ def privateDependencyBaseVersion = "adempiere-3.9.4"
 startScripts.enabled = false
 
 ext {
-	javaMainClass = "org.spin.template.server.TemplateServer"
+	javaMainClass = "org.spin.journal_import.server.JournalServer"
 }
 
 application {
@@ -61,8 +61,8 @@ protobuf {
 			  task.generateDescriptorSet = true
 			
 			  // Allows to override the default for the descriptor set location
-			  task.descriptorSetOptions.path =
-			    "${projectDir}/build/descriptors/adempiere-grpc-template-service-service.pb"
+			task.descriptorSetOptions.path =
+				"${projectDir}/build/descriptors/adempiere-journal-import-service.pb"
 			
 			  // If true, the descriptor set will contain line number information
 			  // and comments. Default is false.
@@ -85,7 +85,7 @@ sourceSets {
 }
 task AdempiereTemplateServer(type: CreateStartScripts) {
 	mainClass = javaMainClass
-    applicationName = 'adempiere-grpc-template-service-server'
+	applicationName = 'adempiere-journal-import-service-server'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = jar.outputs.files + project.configurations.runtimeClasspath
 }

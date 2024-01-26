@@ -6,10 +6,10 @@
 	"configurations": [
 		{
 			"type": "java",
-			"name": "ADmempiere gRPC Template",
+			"name": "Import Journal",
 			"request": "launch",
-			"mainClass": "org.spin.template.server.TemplateServer",
-			"projectName": "adempiere-grpc-template-service",
+			"mainClass": "org.spin.journal_import.server.JournalServer",
+			"projectName": "adempiere-journal-import-service",
 			"env": {
 				"ADEMPIERE_APPS_TYPE": "wildfly",
 				"JWT_SECRET_KEY": "2C51599F5B1248F945B93E05EFC43B3A15D8EB0707C0F02FD97028786C40976F",

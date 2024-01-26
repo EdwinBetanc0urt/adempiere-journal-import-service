@@ -37,8 +37,7 @@ static_resources:
               proto_descriptor: "/data/descriptior.pb"
               services:
                 # package.service
-                # - services_enabled
-                - template_service.TemplateService
+                - journal_import.JournalImport
               print_options:
                 add_whitespace: true
                 always_print_primitive_fields: true

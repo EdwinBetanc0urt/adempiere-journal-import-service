@@ -1,4 +1,4 @@
-# ADempiere Template
+# ADempiere Journal Import Service
 
 This project allows define a new project using gRPC with ADempiere. Is very good for create your own service like push Orders, attendance and other business case.
 

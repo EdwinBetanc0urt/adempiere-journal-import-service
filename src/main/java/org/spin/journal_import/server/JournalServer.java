@@ -81,7 +81,7 @@ public class JournalServer {
 		//	Start based on provider
 		Env.setContextProvider(this.contextProvider);
 
-		logger.info("Service Template added on " + SetupLoader.getInstance().getServer().getPort());
+		logger.info("Service Journal Import added on " + SetupLoader.getInstance().getServer().getPort());
 		//	
 		ServerBuilder<?> serverBuilder;
 		if(SetupLoader.getInstance().getServer().isTlsEnabled()) {

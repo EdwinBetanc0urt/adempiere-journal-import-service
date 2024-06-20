@@ -15,11 +15,13 @@
 package org.spin.journal_import.controller;
 
 import org.compiere.util.CLogger;
+import org.spin.journal_import.service.JournalImportService;
 import org.spin.proto.journal_import.CreateJournalRequest;
-import org.spin.proto.journal_import.Journal;
-import org.spin.proto.journal_import.ListJournalsRequest;
-import org.spin.proto.journal_import.ListJournalsResponse;
+
+import com.google.protobuf.Empty;
+
 import org.spin.proto.journal_import.JournalImportServiceGrpc.JournalImportServiceImplBase;
+import org.spin.proto.journal_import.ProcessJournalRequest;
 
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
@@ -35,12 +37,12 @@ public class JournalImport extends JournalImportServiceImplBase {
 
 
 	@Override
-	public void listJournals(ListJournalsRequest request, StreamObserver<ListJournalsResponse> responseObserver) {
+	public void createJournal(CreateJournalRequest request, StreamObserver<Empty> responseObserver) {
 		try {
-			log.fine("ListJournals: " + request);
-			ListJournalsResponse.Builder journalsList = ListJournalsResponse.newBuilder();
+			log.fine("CreateJournal: " + request);
+			Empty.Builder builder = JournalImportService.createJournal(request);
 			responseObserver.onNext(
-				journalsList.build()
+				builder.build()
 			);
 			responseObserver.onCompleted();
 		} catch (Exception e) {
@@ -57,12 +59,12 @@ public class JournalImport extends JournalImportServiceImplBase {
 
 
 	@Override
-	public void createJournal(CreateJournalRequest request, StreamObserver<Journal> responseObserver) {
+	public void processJournal(ProcessJournalRequest request, StreamObserver<Empty> responseObserver) {
 		try {
 			log.fine("CreateJournal: " + request);
-			Journal.Builder banksList = Journal.newBuilder();
+			Empty.Builder builder = JournalImportService.processJournal(request);
 			responseObserver.onNext(
-				banksList.build()
+				builder.build()
 			);
 			responseObserver.onCompleted();
 		} catch (Exception e) {

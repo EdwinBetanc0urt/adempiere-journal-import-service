@@ -1,6 +1,6 @@
-FROM envoyproxy/envoy:v1.28.0
+FROM envoyproxy/envoy:v1.29.2
 
-LABEL maintainer="ySenih@erpya.com; EdwinBetanc0urt@outlook.com" \
+LABEL maintainer="ySenih@erpya.com; EdwinBetanc0urt@outlook.com;" \
 	description="Proxy Transcoding gRPC to JSON via http"
 
 
@@ -8,8 +8,7 @@ LABEL maintainer="ySenih@erpya.com; EdwinBetanc0urt@outlook.com" \
 ENV \
 	SERVER_PORT="5562" \
 	BACKEND_HOST="localhost" \
-	BACKEND_PORT="50062" \
-	SERVICES_ENABLED="template_service.TemplateService;"
+	BACKEND_PORT="50062"
 
 #Expose Ports
 # EXPOSE 9901 # admin port
@@ -23,7 +22,7 @@ WORKDIR /etc/envoy/
 COPY docker/envoy_template.yaml /etc/envoy/envoy_template.yaml
 
 # Proto gRPC descriptor
-COPY docker/adempiere-journal-import-service.pb /data/descriptor.pb
+COPY docker/adempiere-journal-import-service.dsc /data/descriptor.dsc
 COPY docker/start_grpc_proxy.sh /etc/envoy/start.sh
 
 

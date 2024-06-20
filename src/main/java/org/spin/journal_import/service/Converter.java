@@ -20,5 +20,5 @@ package org.spin.journal_import.service;
  * @author Yamel Senih, ysenih@erpya.com , http://www.erpya.com
  */
 public class Converter {
-
+	
 }

@@ -10,25 +10,6 @@ import "google/protobuf/struct.proto";
 
 package journal_import;
 
-// List Journals Request
-message ListJournalsRequest {
-	string filters = 1;
-	string sort_by = 2;
-	repeated string group_columns = 3;
-	repeated string select_columns = 4;
-	int32 page_size = 5;
-	string page_token = 6;
-	string search_value = 7;
-}
-
-// List Journals Response
-message ListJournalsResponse {
-	int64 record_count = 1;
-	repeated Journal records = 2;
-	string next_page_token = 3;
-}
-
-// Value Object from ADempiere
 message Journal {
 	string codcia = 1;
 	int32 anotctb = 2;
@@ -48,22 +29,36 @@ message Journal {
 	string canctb = 16;
 }
 
-// Create Entity Request
+// Journal
 message CreateJournalRequest {
-	string table_name = 1;
-	google.protobuf.Struct attributes = 2;
+	string document_no = 1;
+	google.protobuf.Timestamp date_acct = 2;
+	string description = 3;
+	string amt_source_dr = 4;
+	string amt_source_cr = 5;
+	string account_value = 6;
+	string user_element1_value = 7;
+	string user_element2_value = 8;
+	string bpartner_value = 9;
+}
+message ProcessJournalRequest {
 }
 
-// The greeting service definition.
+
+// Journal Import
 service JournalImportService {
-	//	List a Journals
-	rpc ListJournals(ListJournalsRequest) returns (ListJournalsResponse) {
-		option (google.api.http) = { get: "/v1/journals" };
-	}
-	// Create Journal Request
-	rpc CreateJournal(CreateJournalRequest) returns (Journal) {
+	// Create Journal
+	rpc CreateJournal(CreateJournalRequest) returns (google.protobuf.Empty) {
 		option (google.api.http) = {
 			post: "/v1/journals",
+			body: "*"
+		};
+	}
+
+	// Process Journal
+	rpc ProcessJournal(ProcessJournalRequest) returns (google.protobuf.Empty) {
+		option (google.api.http) = {
+			put: "/v1/journals",
 			body: "*"
 		};
 	}

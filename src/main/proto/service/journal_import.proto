@@ -1,3 +1,17 @@
+/************************************************************************************
+ * Copyright (C) 2018-2024 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt, EdwinBetanc0urt@outlook.com                    *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
 syntax = "proto3";
 
 option java_package = "org.spin.proto.journal_import";
@@ -5,34 +19,13 @@ option java_multiple_files = true;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 
 package journal_import;
-
-message Journal {
-	string codcia = 1;
-	int32 anotctb = 2;
-	int32 lapctb = 3;
-	string tipcmp = 4;
-	string numcmp = 5;
-	google.protobuf.Timestamp feccmp = 6;
-	string ctactb = 7;
-	string numdoc = 8;
-	google.protobuf.Timestamp fecdoc = 9;
-	string monctb = 10;
-	string destra = 11;
-	string debcre = 12;
-	string estaid = 13;
-	string userid = 14;
-	google.protobuf.Timestamp fecsis = 15;
-	string canctb = 16;
-}
 
 // Journal
 message CreateJournalRequest {
 	string document_no = 1;
-	google.protobuf.Timestamp date_acct = 2;
+	string date_acct = 2;
 	string description = 3;
 	string amt_source_dr = 4;
 	string amt_source_cr = 5;
@@ -42,6 +35,7 @@ message CreateJournalRequest {
 	string bpartner_value = 9;
 }
 message ProcessJournalRequest {
+	string document_no = 1;
 }
 
 
@@ -51,14 +45,6 @@ service JournalImportService {
 	rpc CreateJournal(CreateJournalRequest) returns (google.protobuf.Empty) {
 		option (google.api.http) = {
 			post: "/v1/journals",
-			body: "*"
-		};
-	}
-
-	// Process Journal
-	rpc ProcessJournal(ProcessJournalRequest) returns (google.protobuf.Empty) {
-		option (google.api.http) = {
-			put: "/v1/journals",
 			body: "*"
 		};
 	}

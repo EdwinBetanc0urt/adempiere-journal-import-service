@@ -37,6 +37,7 @@ public class JournalImport extends JournalImportServiceImplBase {
 
 	@Override
 	public void createJournal(CreateJournalRequest request, StreamObserver<Empty> responseObserver) {
+		log.severe(request.toString());
 		try {
 			log.fine("CreateJournal: " + request);
 			Empty.Builder builder = JournalImportService.createJournal(request);

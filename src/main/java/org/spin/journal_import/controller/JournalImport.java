@@ -21,7 +21,6 @@ import org.spin.proto.journal_import.CreateJournalRequest;
 import com.google.protobuf.Empty;
 
 import org.spin.proto.journal_import.JournalImportServiceGrpc.JournalImportServiceImplBase;
-import org.spin.proto.journal_import.ProcessJournalRequest;
 
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
@@ -38,31 +37,10 @@ public class JournalImport extends JournalImportServiceImplBase {
 
 	@Override
 	public void createJournal(CreateJournalRequest request, StreamObserver<Empty> responseObserver) {
+		log.severe(request.toString());
 		try {
 			log.fine("CreateJournal: " + request);
 			Empty.Builder builder = JournalImportService.createJournal(request);
-			responseObserver.onNext(
-				builder.build()
-			);
-			responseObserver.onCompleted();
-		} catch (Exception e) {
-			log.severe(e.getLocalizedMessage());
-			e.printStackTrace();
-			responseObserver.onError(
-				Status.INTERNAL
-					.withDescription(e.getLocalizedMessage())
-					.withCause(e)
-					.asRuntimeException()
-			);
-		}
-	}
-
-
-	@Override
-	public void processJournal(ProcessJournalRequest request, StreamObserver<Empty> responseObserver) {
-		try {
-			log.fine("CreateJournal: " + request);
-			Empty.Builder builder = JournalImportService.processJournal(request);
 			responseObserver.onNext(
 				builder.build()
 			);
